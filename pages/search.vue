@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <div class='categories_container, flex flex-wrap space-x-2 justify-center'>
+    <div v-if='!isSearched' class='categories_container, flex flex-wrap space-x-2 justify-center'>
       <ul class='flex justify-center items-center flex-wrap m-1' v-for='categorie in categorieList'>
         <li @click='getResults("categpries",categorie.strCategory)' class='w-[140px] h-28 cursor-pointer shadow-xl text-lg p-1'>
           <div class='flex flex-col text-center'>
@@ -33,30 +33,18 @@
       </ul>
     </div>
 
-    <div v-if='isSearched' class='absolute top-0 bottom-0 right-0 left-0 h-screen result z-0 bg-[rgba(100,100,100,0.4)] flex justify-center items-start'>
-
-      <div class='overflow-auto bg-white rounded-2xl w-4/5 max-h-screen mx-10 z-10 opacity-100 flex justify-center flex-wrap  flex-col'>
-        <h2 class='mt-2 text-4xl text-center'> Results</h2>
-        <div class='flex justify-center flex-wrap  relative'>
-          <ul v-for='result in resultsList' :key='result.idMeal' class='cursor-pointer shadow-lg' @click='getMealInfo(result.idMeal)'>
-            <li>
-              <div class='w-32 m-4'>
-                <img :src='result.strMealThumb' :alt='result.strMeal' class='rounded-full'>
-                <h2 class='text-center'>{{result.strMeal}}</h2>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div class='fixed top-[60px] right-[120px] cursor-pointer' @click='isSearched = false'>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </div>
-
-
-      </div>
+    <div v-if='isSearched' class='flex justify-center flex-wrap justify-center  relative'>
+      <ul v-for='result in resultsList' :key='result.idMeal' class='cursor-pointer shadow-lg' @click='getMealInfo(result.idMeal)'>
+        <li>
+          <div class='w-32 m-4'>
+            <img :src='result.strMealThumb' :alt='result.strMeal' class='rounded-full'>
+            <h2 class='text-center'>{{result.strMeal}}</h2>
+          </div>
+        </li>
+      </ul>
     </div>
+
+
 
   </div>
   </div>
