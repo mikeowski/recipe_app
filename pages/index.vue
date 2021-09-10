@@ -1,6 +1,6 @@
 <template>
   <div class='sc'>
-  <RandomMeals/>
+    <RandomMeals />
   </div>
 </template>
 
