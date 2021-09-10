@@ -42,8 +42,8 @@ export default {
     }
   },
   created() {
-    this.listIngredients(),
-      console.log(this.meal)
+    this.listIngredients()
+
   },
   methods: {
     listIngredients() {
@@ -52,7 +52,7 @@ export default {
           this.ingredients.push(`${this.meal[`strIngredient${i}`]} - ${this.meal[`strMeasure${i}`]}`)
         }
       }
-      console.log(this.ingredients)
+
     }
   }
 }

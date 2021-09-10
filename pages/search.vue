@@ -100,20 +100,19 @@ export default {
           })
         this.resultsList = results.meals
       }
+      if(this.resultsList != null) {
+        this.isSearched = true
+      }
       this.isContainerReady = true
-      this.isSearched = true
-
       this.searchText = ''
 
     },
     async getMealInfo(id) {
-      console.log(id)
       const result = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
         .then(rs => {
           return rs.json()
         })
       this.mealInfo = result.meals[0]
-      console.log(this.mealInfo)
       this.isInfo = true
       this.isSearched = false
     }
