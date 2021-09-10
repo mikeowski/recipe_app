@@ -11,7 +11,7 @@
     </div>
     <!--SearchBar-->
     <div v-if='!isInfo'>
-      <div class='search space-y-4 mt-[200px] mb-6'>
+      <div class='search space-y-4 mt-[100px] mb-6'>
         <div class='relative w-[400px] h-10 mx-auto'>
           <input placeholder='Search' @keyup.enter='getResults("search",searchText)'
                  class='outline-none p-5 w-full h-full rounded-2xl bg-gray-200' v-model='searchText' type='text'>
