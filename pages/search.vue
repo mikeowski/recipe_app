@@ -21,8 +21,8 @@
       </div>
       </div>
     </div>
-
-    <div v-if='!isSearched' class='categories_container, flex flex-wrap space-x-2 justify-center'>
+    <Loading v-if='!isContainerReady '/>
+    <div v-if='!isSearched && isContainerReady' class='categories_container, flex flex-wrap space-x-2 justify-center'>
       <ul class='flex justify-center items-center flex-wrap m-1' v-for='categorie in categorieList'>
         <li @click='getResults("categpries",categorie.strCategory)' class='w-[140px] h-28 cursor-pointer shadow-xl text-lg p-1'>
           <div class='flex flex-col text-center'>
@@ -59,7 +59,8 @@ export default {
       resultsList:[],
       isSearched:false,
       mealInfo:[],
-      isInfo:false
+      isInfo:false,
+      isContainerReady:false,
     }
   },
   created() {
@@ -71,9 +72,11 @@ export default {
         method:'GET'
       }).then(res =>{return res.json()})
       this.categorieList = categories.categories
+      this.isContainerReady = true
     },
     async getResults(mode,payload){
       let results;
+      this.isContainerReady = false
       if(mode == 'categpries'){
         results = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${payload}`,{
           method:'GET'
@@ -85,9 +88,11 @@ export default {
           .then(rs =>{return rs.json()})
         this.resultsList = results.meals
       }
+      this.isContainerReady = true
       this.isSearched = true
+
       this.searchText = ''
-      console.log(this.resultsList)
+
     },
     async getMealInfo(id){
       console.log(id)
