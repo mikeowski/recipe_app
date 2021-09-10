@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital@1&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  html{
+    @apply font-body
+  }
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  body{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}
+
+@layer components {
+  .header{
+    @apply w-full flex h-12 justify-end items-center px-6 space-x-6 font-bold
+    shadow-md
+    sticky top-0 bg-white
+    mb-2
+  }
+  .sc{
+    @apply max-w-screen-lg mx-auto mb-10}
+}
