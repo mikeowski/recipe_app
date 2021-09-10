@@ -1,6 +1,15 @@
 <template>
   <div class='sc'>
+    <div v-if='isInfo'>
+      <div class='fixed top-[60px] right-[120px] cursor-pointer' @click='isInfo = false'>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </div>
+      <MainMeal :meal='mealInfo'/>
+    </div>
 
+  <div v-if='!isInfo'>
     <div class='search space-y-4 mt-[200px] mb-6'>
       <h2 class='text-4xl text-center'>Search</h2>
       <div class='relative w-[400px] h-10 mx-auto'>
@@ -13,8 +22,6 @@
       </div>
     </div>
 
-
-
     <div class='categories_container, flex flex-wrap space-x-2 justify-center'>
       <ul class='flex justify-center items-center flex-wrap m-1' v-for='categorie in categorieList'>
         <li @click='getResults("categpries",categorie.strCategory)' class='w-[140px] h-28 cursor-pointer shadow-xl text-lg p-1'>
@@ -25,6 +32,28 @@
         </li>
       </ul>
     </div>
+
+    <div v-if='isSearched' class='absolute top-0 bottom-0 right-0 left-0 result z-0 bg-[rgba(100,100,100,0.4)] flex justify-center items-start'>
+
+      <div class='bg-white w-4/5  mx-10 z-10 opacity-100 flex justify-center flex-wrap mt-32 relative'>
+        <div class='absolute top-[6px] right-[12px] cursor-pointer' @click='isSearched = false'>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </div>
+        <ul v-for='result in resultsList' :key='result.idMeal' class='cursor-pointer' @click='getMealInfo(result.idMeal)'>
+          <li>
+            <div class='w-32 m-4'>
+              <img :src='result.strMealThumb' :alt='result.strMeal' class='rounded-full'>
+              <h2 class='text-center'>{{result.strMeal}}</h2>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+  </div>
   </div>
 </template>
 
@@ -34,7 +63,10 @@ export default {
     return{
       categorieList:[],
       searchText:'',
-      resultsList:[]
+      resultsList:[],
+      isSearched:false,
+      mealInfo:[],
+      isInfo:false
     }
   },
   created() {
@@ -60,7 +92,18 @@ export default {
           .then(rs =>{return rs.json()})
         this.resultsList = results.meals
       }
+      this.isSearched = true
+      this.searchText = ''
       console.log(this.resultsList)
+    },
+    async getMealInfo(id){
+      console.log(id)
+      const result = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+      .then(rs =>{return rs.json()})
+      this.mealInfo = result.meals[0]
+      console.log(this.mealInfo)
+      this.isInfo = true
+      this.isSearched = false
     }
   }
 }

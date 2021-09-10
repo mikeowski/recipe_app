@@ -1,7 +1,7 @@
 <template>
   <div class='flex flex-col w-full'>
     <div class='flex flex-col lg:flex-row lg:justify-evenly text-center items-center justify-center'>
-        <img :src='meal.strMealThumb' :alt='meal.strMeal' class='lg:w-400  shadow-md lg:my-10'>
+        <img :src='meal.strMealThumb' :alt='meal.strMeal' class='rounded-2xl lg:w-400  shadow-md lg:my-10'>
         <div class='space-y-1 lg:mt-0 mt-4'>
           <h2 class='text-5xl'>{{meal.strMeal}}</h2>
           <span>{{meal.strCategory}}</span>

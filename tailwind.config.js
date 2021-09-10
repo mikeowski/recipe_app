@@ -17,7 +17,8 @@ module.exports = {
         body:['Poppins']
       },
       colors:{
-        logoGradient: 'linear-gradient(315deg, #0cbaba 0%, #380036 74%);'
+        logoGradient: 'linear-gradient(315deg, #0cbaba 0%, #380036 74%)',
+        resultGradient: 'linear-gradient(315deg, #b3cdd1 75%, #9fa4c4 74%)'
       }
     },
   },
