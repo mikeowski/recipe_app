@@ -1,5 +1,5 @@
 <template>
-  <header class='header'>
+  <header class='header z-50'>
    <nuxt-link to='/' class='mr-auto font-header text-4xl text-logoGradient'>Recipe</nuxt-link>
     <nuxt-link to='/'>HOME</nuxt-link>
     <nuxt-link to='search'>
