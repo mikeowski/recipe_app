@@ -16,17 +16,16 @@
   body{
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
-    scroll-behavior: auto;
-    scroll-behavior: smooth;
   }
 }
 
 @layer components {
   .header{
-    @apply w-full flex h-12 justify-end items-center px-6 space-x-6 font-bold
+    @apply w-full flex h-14 justify-end items-center px-6 space-x-6 font-bold
     shadow-md
     sticky top-0 bg-white
     mb-2
+    z-50
   }
   .sc{
     @apply max-w-screen-lg mx-auto mb-10}
