@@ -22,7 +22,7 @@ export default {
     }
 
   },
-  created() {
+  mounted() {
     this.fetchRandomMeal()
   },
   methods: {
