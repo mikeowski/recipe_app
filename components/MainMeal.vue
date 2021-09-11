@@ -21,8 +21,6 @@
         </ul>
       </div>
     </div>
-
-
   </div>
 </template>
 
@@ -41,7 +39,7 @@ export default {
       required: true
     }
   },
-  created() {
+  mounted() {
     this.listIngredients()
 
   },
